@@ -1,0 +1,43 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            //requires vscode ext rioj7.command-variable
+            "name": "import_v2 Statsbomb",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}/src/import_v2.py",
+            "args": [
+                "importstatsbomb",
+                "--zipfile",
+                "data/statsbomb/open-data/open-data-master.zip",
+                "--quiet",
+                "--sqlitefile",
+                "/tmp/import_v2_${input:dbSuffix}.db"            
+            ],
+            "console": "integratedTerminal",
+            "cwd": "${workspaceFolder}",
+            "justMyCode": true
+        }
+    ],
+	"inputs": [
+		{
+			"id": "dbSuffix",
+			"type": "command",
+            "command": "extension.commandvariable.dateTime",
+            "args": {
+                "locale": "en-US",
+                "options": {
+                  "year": "numeric",
+                  "month": "2-digit",
+                  "day": "2-digit",
+                  "hour12": false,
+                  "hour": "2-digit",
+                  "minute": "2-digit",
+                  "second": "2-digit"
+                },
+                "template": "${year}${month}${day}_${hour}${minute}${second}"
+              }	
+        }
+	]
+}
