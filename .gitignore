@@ -1,8 +1,8 @@
 .idea
 .venv
 
-data/**/*
-!data/**/install.sh
+data/*/*/**
+!data/statsbomb/open-data/install.sh
 
 contrib/**/*
 !contrib/install.sh
@@ -12,7 +12,6 @@ cache/**/*
 **/*.pyc
 **/*.so
 
-src/contrib
 **/__pycache__
 
 
