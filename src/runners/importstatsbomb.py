@@ -234,6 +234,7 @@ class ImportStatsBombRunner(Runner):
             'lineups': 'open-data-master/data/lineups/{}.json'.format(matchId),
             'events': 'open-data-master/data/events/{}.json'.format(matchId),
         }
+
         if self.has360(zipPath, matchId):
             filePaths['threesixty'] = 'open-data-master/data/three-sixty/{}.json'.format(
                 matchId)

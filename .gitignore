@@ -1,11 +1,15 @@
 .idea
 .venv
 
+
 data/*/*/**
 !data/statsbomb/open-data/install.sh
 
 contrib/**/*
 !contrib/install.sh
+!contrib/Makefile
+
+.env
 
 to_be_deleted/**/*
 cache/**/*

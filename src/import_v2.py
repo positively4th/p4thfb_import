@@ -2,9 +2,13 @@ import click
 import logging
 import os
 import multiprocessing as mp
-import bottombar as bb
+# import bottombar as bb
+from dotenv import load_dotenv
 
 from src.statusbar import getStatusBar
+
+
+load_dotenv()
 
 
 @click.group()
@@ -14,9 +18,9 @@ def main(ctx):
 
 
 @main.command()
-@click.option('--zipfile', required=True, help='Path to StatsBomb open data zip file.')
-@click.option('--sqlitefile', required=False, help='Path to sqlite db file.')
-@click.option('--pgurl', required=False, help='Postgresql db url.')
+@click.option('--zipfile', required=True, default=os.environ.get('ZIPFILE', None), help='Path to StatsBomb open data zip file.')
+@click.option('--sqlitefile', required=False, default=os.environ.get('SQLITEFILE', None), help='Path to sqlite db file.')
+@click.option('--pgurl', required=False, default=os.environ.get('PGURL', None), help='Postgresql db url.')
 @click.option('--matchpath', required=False, default=None, help='StatsBomb match id (competition/match).')
 @click.option('--quiet', is_flag=True, default=False, required=False, help='No prompting, assume Yes.')
 @click.pass_context
