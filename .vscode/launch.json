@@ -3,7 +3,7 @@
     "configurations": [
         {
             //requires vscode ext rioj7.command-variable
-            "name": "import_v2 Statsbomb",
+            "name": "import_v2 importstatsbomb",
             "type": "python",
             "request": "launch",
             "program": "${workspaceFolder}/src/import_v2.py",
@@ -14,6 +14,21 @@
                 "--quiet",
                 "--sqlitefile",
                 "/tmp/import_v2_${input:dbSuffix}.db"            
+            ],
+            "console": "integratedTerminal",
+            "cwd": "${workspaceFolder}",
+            "justMyCode": true
+        },
+        {
+            //requires vscode ext rioj7.command-variable
+            "name": "import_v2 downloadstatsbomb",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}/src/import_v2.py",
+            "args": [
+                "downloadstatsbomb",
+                "--zipfile",
+                "/tmp/sbod.zip"
             ],
             "console": "integratedTerminal",
             "cwd": "${workspaceFolder}",

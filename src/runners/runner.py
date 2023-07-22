@@ -14,3 +14,14 @@ class Runner():
         for name in logging.root.manager.loggerDict:
             logger = logging.getLogger(name)
             logger.setLevel(level)
+
+    def showStatus(self, msg) -> str:
+        if not 'statusBar' in self.cmdArgs:
+            print(str)
+            return None
+        return self.cmdArgs['statusBar'].queueMessage(msg)
+
+    def hideStatus(self, statusId):
+        if statusId is None:
+            return False
+        self.cmdArgs['statusBar'].cancelMessage(statusId)

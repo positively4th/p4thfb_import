@@ -19,6 +19,19 @@ def main(ctx):
 
 @main.command()
 @click.option('--zipfile', required=True, default=os.environ.get('ZIPFILE', None), help='Path to StatsBomb open data zip file.')
+@click.pass_context
+def downloadstatsbomb(ctx, zipfile: str):
+    ctx.obj.update({
+        'sciptname': os.path.abspath(__file__),
+        'zipfile': zipfile,
+    })
+    from runners.downloadstatsbomb import DownloadStatsBombRunner
+    runner = DownloadStatsBombRunner(ctx.obj)
+    runner.execute()
+
+
+@main.command()
+@click.option('--zipfile', required=True, default=os.environ.get('ZIPFILE', None), help='Path to StatsBomb open data zip file.')
 @click.option('--sqlitefile', required=False, default=os.environ.get('SQLITEFILE', None), help='Path to sqlite db file.')
 @click.option('--pgurl', required=False, default=os.environ.get('PGURL', None), help='Postgresql db url.')
 @click.option('--matchpath', required=False, default=None, help='StatsBomb match id (competition/match).')

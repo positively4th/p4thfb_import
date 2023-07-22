@@ -166,17 +166,6 @@ class ImportStatsBombRunner(Runner):
             return []
         return res
 
-    def showStatus(self, msg) -> str:
-        if not 'statusBar' in self.cmdArgs:
-            print(str)
-            return None
-        return self.cmdArgs['statusBar'].queueMessage(msg)
-
-    def hideStatus(self, statusId):
-        if statusId is None:
-            return False
-        self.cmdArgs['statusBar'].cancelMessage(statusId)
-
     def parseMatches(self, competitionId, selectedMatches):
 
         res = []
