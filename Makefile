@@ -1,7 +1,10 @@
+SHELL := /bin/bash
+
 .PHONY: \
 	setup setup-requirements setup-setup-contrib \
 	data data-download data-clean \
-	import download-data
+	docker docker-import docker-run \
+	import-importstatsbomb import-downlod
 
 default: setup docker-import
 
@@ -26,13 +29,28 @@ setup-contrib:
 	make -C contrib
 
 
+#import
+import-importstatsbomb:
+	(\
+	source .venv/bin/activate \
+	&& \
+	PYTHONPATH="." python src/import_v2.py importstatsbomb \
+	)
+
+import-downloadstatsbomb:
+	(\
+	source .venv/bin/activate \
+	&& \
+	PYTHONPATH="." python src/import_v2.py downloadstatsbomb \
+	)
+
 #docker
 docker: docker-import
 
 docker-import:
 	docker build -t import -f import.dockerfile .
 
-docker-run: import
+docker-run: docker-import
 	docker run --name import:latest -it import
 
 
