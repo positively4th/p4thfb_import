@@ -18,7 +18,7 @@ COPY requirements.txt Makefile ./
 RUN ln -s /usr/bin/python3.10 /usr/local/bin/python
 RUN make container
 
-COPY .env ./
+COPY .env.docker ./
 
 RUN echo "#!/bin/bash" > /usr/bin/import_v2
 RUN echo "cd /app && source .venv/bin/activate &&  PYTHONPATH="." python src/import_v2.py importstatsbomb" >> /usr/bin/import_v2
