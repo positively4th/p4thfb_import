@@ -13,8 +13,11 @@ class DownloadStatsBombRunner(Runner):
 
         url = 'https://github.com/statsbomb/open-data/archive/refs/heads/master.zip'
         with requests.get(url, allow_redirects=True, stream=True) as r:
+            if not r:
+                raise Exception('Unable to download data from {}.', url)
+            totalSize = r.headers.get('content-length')
+            totalSize = int(totalSize) if totalSize is not None else '?'
             with open(self.cmdArgs['zipfile'], 'wb') as f:
-                totalSize = int(r.headers.get('content-length'))
                 currentSize = 0
                 statusId = None
 
