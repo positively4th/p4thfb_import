@@ -1,5 +1,5 @@
 import requests
-
+from time import sleep
 from .runner import Runner
 
 
@@ -29,3 +29,4 @@ class DownloadStatsBombRunner(Runner):
                         'Downloaded {} / {} of {}'.format(
                             currentSize, totalSize, self.cmdArgs['zipfile'])
                     )
+                    f.write(batch)
